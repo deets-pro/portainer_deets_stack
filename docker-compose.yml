@@ -1,0 +1,50 @@
+version: '3.8'
+
+# Application Services
+services:
+
+  # http app proxy ?
+  laravel-php:
+    container_name: deets_laravel_php
+    image: digitalocean.com/php
+    volumes:
+      - ./source:/var/www/html:delegated
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    env_file:
+      - stack.env
+    networks:
+      - laravel
+
+  webserver:
+    container_name: deets_nginx_webserver
+    image: "ghcr.io/deets-pro/nginx_webserver_image:latest"
+    ports:
+      - "${NGINX_PORT}:80"
+    volumes:
+      - ./source:/var/www/html:delegated
+    depends_on:
+      - laravel-php
+    env_file:
+      - stack.env
+    networks:
+      - laravel
+
+  pyhasher:
+    container_name: deets_py_hasher
+    image: "ghcr.io/deets-pro/py_dockerized_scrypt_hasher_service:latest"
+    ports:
+      - "${PYHASHER_PORT}:5959"
+    env_file:
+      - stack.env
+    networks:
+      - laravel
+
+#Docker Networks
+networks:
+  laravel:
+    driver: bridge
+
+#Volumes
+volumes:
+  persistent: {}
