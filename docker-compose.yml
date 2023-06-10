@@ -23,8 +23,8 @@ services:
       - "${NGINX_PORT}:80"
     volumes:
       - persistent:/var/www/html/:delegated
+      - persistent/default.conf:/etc/nginx/conf.d/default.conf
       - /home/deets/storage/:/var/www/html/storage/:delegated
-      - ./default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - deets-app
     networks:
