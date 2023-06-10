@@ -10,6 +10,7 @@ services:
     image: ghcr.io/deets-pro/php_laravel_deets:latest
     volumes:
       - persistent:/var/www/html/:delegated
+      - /root/deets_storage/:/var/www/html/storage/app/:delegated
     networks: 
       - laravel
     env_file:
@@ -22,6 +23,7 @@ services:
       - "${NGINX_PORT}:80"
     volumes:
       - persistent:/var/www/html/:delegated
+      - /root/deets_storage/:/var/www/html/storage/app/:delegated
     depends_on:
       - laravel-php
     networks:
