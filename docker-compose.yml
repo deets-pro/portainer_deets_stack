@@ -4,15 +4,15 @@ version: '3.8'
 services:
 
   # http app proxy ?
-  laravel-php:
+  deets-app:
     container_name: deets_laravel_php_v2
     #build:
-    image: ghcr.io/deets-pro/php_laravel_deets:latest
+    image: "ghcr.io/deets-pro/php_laravel_deets:latest"
     volumes:
       - persistent:/var/www/html/:delegated
       - /home/deets/storage/:/var/www/html/storage/:delegated
     networks: 
-      - laravel_v2
+      - deets-network
     env_file:
       - stack.env
 
@@ -28,7 +28,7 @@ services:
     depends_on:
       - laravel-php
     networks:
-      - laravel_v2
+      - deets-network
     env_file:
       - stack.env
 
@@ -44,7 +44,7 @@ services:
 
 #Docker Networks
 networks:
-  laravel_v2:
+  deets-network:
     driver: bridge
 
 #Volumes
