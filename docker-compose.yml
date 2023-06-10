@@ -38,7 +38,7 @@ services:
     ports:
       - "${PYHASHER_PORT}:5959"
     networks:
-      - laravel_v2
+      - deets-network
     env_file:
       - stack.env
 
