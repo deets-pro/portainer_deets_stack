@@ -5,7 +5,7 @@ services:
 
   # http app proxy ?
   laravel-php:
-    container_name: deets_laravel_php
+    container_name: deets_laravel_php_v2
     #build:
     image: ghcr.io/deets-pro/php_laravel_deets:latest
     volumes:
@@ -17,7 +17,7 @@ services:
       - stack.env
 
   webserver:
-    container_name: deets_nginx_webserver
+    container_name: deets_nginx_webserver_v2
     image: "ghcr.io/deets-pro/nginx_webserver_image:latest"
     ports:
       - "${NGINX_PORT}:80"
@@ -32,7 +32,7 @@ services:
       - stack.env
 
   pyhasher:
-    container_name: deets_py_hasher
+    container_name: deets_py_hasher_v2
     image: "ghcr.io/deets-pro/py_dockerized_scrypt_hasher_service:latest"
     ports:
       - "${PYHASHER_PORT}:5959"
