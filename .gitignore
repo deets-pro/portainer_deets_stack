@@ -2,3 +2,4 @@
 .env
 stack.env
 ....not.env
+prod.stack.env
