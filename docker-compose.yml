@@ -10,6 +10,8 @@ services:
       - /home/deets/storage/:/var/www/html/storage/:delegated
     networks: 
       - deets_network
+    pull_policy: always
+    restart: always
     env_file:
       - stack.env
 
@@ -25,6 +27,8 @@ services:
       - app
     networks:
       - deets_network
+    pull_policy: always
+    restart: always
     env_file:
       - stack.env
 
@@ -35,6 +39,8 @@ services:
       - "${PYHASHER_PORT}:5959"
     networks:
       - deets_network
+    pull_policy: always
+    restart: always
     env_file:
       - stack.env
 
