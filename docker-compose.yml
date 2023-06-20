@@ -11,7 +11,7 @@ services:
     networks: 
       - deets_network
     pull_policy: always
-    restart: always
+    restart: unless-stopped
     env_file:
       - stack.env
 
@@ -28,7 +28,7 @@ services:
     networks:
       - deets_network
     pull_policy: always
-    restart: always
+    restart: unless-stopped
     env_file:
       - stack.env
 
@@ -40,7 +40,7 @@ services:
     networks:
       - deets_network
     pull_policy: always
-    restart: always
+    restart: unless-stopped
     env_file:
       - stack.env
 
