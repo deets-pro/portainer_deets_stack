@@ -44,6 +44,16 @@ services:
     env_file:
       - stack.env
 
+  pass_generator:
+    container_name: wallet_pass-api-2
+    image: "ghcr.io/deets-pro/js_express_walletpass_generator_service:latest"
+    networks:
+      - deets_network
+    pull_policy: always
+    restart: unless-stopped
+    env_file:
+      - stack.env
+
 #Docker Networks
 networks:
   deets_network:
